@@ -1,33 +1,74 @@
 <script>
+import Content from "./lib/Content/Content.svelte";
+import TopBar from "./lib/TopBar.svelte";
 
-  let imp = "";
-  let neo = "";
 
-  const readyChannel = new BroadcastChannel('ready_channel');
-  readyChannel.postMessage('ready');
-  readyChannel.addEventListener("message", e => {
-    if(e.data === 'ready') {
-      workChannel.postMessage(imp);
-    }
-  });
-
-  const workChannel = new BroadcastChannel('work_channel');
-
-  workChannel.addEventListener("message", e => {
-    neo = e.data;
-  });
-
-  $: workChannel.postMessage(imp);
+  // $: workChannel.postMessage(imp);
 
   
 </script>
 
 <main>
-  {neo}
-  <input bind:value={imp}/>
-  {imp}
+  <TopBar />
+  <Content />
 </main>
 
 <style>
+ main {
+	  position: relative;
+		height: 100vh;
+    background-color: rgb(214, 139, 0);
+		font-family: Arial, Helvetica, sans-serif;
 
+		overflow: hidden;
+
+    display: flex;
+    flex-direction: column;
+	}
+
+	:global(*) {
+		box-sizing: border-box;
+		margin: 0;
+		padding: 0;
+	}
+
+	:global(ul), :global(ol) {
+		list-style-type: none;
+	}
+
+	:root {
+		scroll-behavior: smooth;
+	}
+
+	:global(button), :global(input[type="submit"]), :global(input[type="reset"]) {
+		background: none;
+		color: inherit;
+		border: none;
+		padding: 0;
+		font: inherit;
+		cursor: pointer;
+		outline: inherit;
+	}
+
+	/* Scrollbars */
+	/* Works on Firefox */
+	:global(*) {
+	scrollbar-width: thin;
+	scrollbar-color: rgb(241, 82, 71) orange;
+	}
+
+	/* Works on Chrome, Edge, and Safari */
+	:global(*)::-webkit-scrollbar {
+	width: 5px;
+	}
+
+	:global(*)::-webkit-scrollbar-track {
+	background: orange;
+	}
+
+	:global(*)::-webkit-scrollbar-thumb {
+	background-color: rgb(241, 82, 71);
+	border-radius: 20px;
+	border: 3px solid orange;
+	}
 </style>
