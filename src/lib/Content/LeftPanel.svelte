@@ -1,10 +1,10 @@
 <script>
     export let imp;
-
+    export let leftPanelWidth;
 </script>
 
 
-<section>
+<section style = "width: {leftPanelWidth}px;" >
     <textarea value={imp} on:input/>
 </section>
 
@@ -12,7 +12,6 @@
 <style>
     section {
         height: 100%;
-        width: 50%;
     }
     textarea {
         resize: none;

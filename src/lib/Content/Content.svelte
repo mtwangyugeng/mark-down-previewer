@@ -5,7 +5,8 @@ import LeftPanel from "./LeftPanel.svelte";
 import Resizer from "./Resizer.svelte";
 import RightPanel from "./RightPanel.svelte";
 
-let imp = placeholder;
+
+let imp = "placeholder";
 
 // const readyChannel = new BroadcastChannel('ready_channel');
 // readyChannel.postMessage('ready');
@@ -29,13 +30,17 @@ const handleInput = (e) => {
     localStorage.setItem("markdown", imp)
 }
 
-
+let leftPanelWidth = 10;
+const updateLeftPanelWidth = (imp) => {
+    leftPanelWidth += imp
+    return leftPanelWidth;
+}
 </script>
 
 
 <section>
-    <LeftPanel imp={imp} on:input={handleInput}/>
-    <Resizer />
+    <LeftPanel imp={imp} on:input={handleInput} leftPanelWidth={leftPanelWidth} />
+    <Resizer {updateLeftPanelWidth} />
     <RightPanel imp={imp}/>
 </section>
 
