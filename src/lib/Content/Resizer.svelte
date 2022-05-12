@@ -21,7 +21,7 @@ const release = () => {
 
 <svelte:window on:mousemove={move} on:mouseup={release} />
 
-<section on:mousedown={initiate}>
+<section on:mousedown={initiate} class:Pressed={dragging}>
 
 </section>
 
@@ -29,5 +29,10 @@ const release = () => {
     section {
         width: 10px;
         background-color: #000;
+        cursor: col-resize;
+    }
+
+    .Pressed {
+        background-color: grey;
     }
 </style>

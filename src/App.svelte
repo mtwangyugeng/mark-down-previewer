@@ -1,6 +1,6 @@
 <script>
 import Content from "./lib/Content/Content.svelte";
-import TopBar from "./lib/TopBar.svelte";
+import TopBar from "./lib/TopBar/TopBar.svelte";
 
 
   // $: workChannel.postMessage(imp);

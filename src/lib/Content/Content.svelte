@@ -35,10 +35,13 @@ const updateLeftPanelWidth = (imp) => {
     leftPanelWidth += imp
     return leftPanelWidth;
 }
+
+let container;
+leftPanelWidth
 </script>
 
 
-<section>
+<section bind:this={container}>
     <LeftPanel imp={imp} on:input={handleInput} leftPanelWidth={leftPanelWidth} />
     <Resizer {updateLeftPanelWidth} />
     <RightPanel imp={imp}/>
