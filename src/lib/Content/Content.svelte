@@ -1,4 +1,6 @@
 <script>
+import { onMount } from "svelte";
+
 import { placeholder } from "./Constants";
 
 import LeftPanel from "./LeftPanel.svelte";
@@ -30,16 +32,26 @@ const handleInput = (e) => {
     localStorage.setItem("markdown", imp)
 }
 
-let leftPanelWidth = 10;
+let leftPanelWidth = 0;
+let leftPanelProportion = 0.5;
 const updateLeftPanelWidth = (imp) => {
     leftPanelWidth += imp
+    leftPanelProportion = leftPanelWidth / container.offsetWidth;
     return leftPanelWidth;
 }
 
 let container;
-leftPanelWidth
+onMount (()=>{
+    changeLeftPanelWidth();
+})
+
+const changeLeftPanelWidth = () => {
+    leftPanelWidth = container.offsetWidth * leftPanelProportion;
+}
+
 </script>
 
+<svelte:window on:resize={changeLeftPanelWidth} />
 
 <section bind:this={container}>
     <LeftPanel imp={imp} on:input={handleInput} leftPanelWidth={leftPanelWidth} />
